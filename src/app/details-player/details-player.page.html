@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-title style="font-size: large; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Details de Joueur</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content [fullscreen]="true" style="padding-top: 1em;">
+  <strong class="ion-margin">Details de Ce Joueur : </strong>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" offset="3">
+          <ion-img [src]="selectedPlayer['image']"></ion-img>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <h3 class="ion-text-center">
+      {{ selectedPlayer['nom'] }}  a la position:  {{ selectedPlayer['position'] }} 
+    </h3>
+
+    <ion-list *ngIf="isDone">
+    
+      @for (stat of statistiques; track stat){
+        <ion-item>
+           <ion-img class="ion-margin" [src]="getImage(stat)"></ion-img>
+          <ion-badge slot="end">{{getStatNumber(selectedPlayer, stat)}}</ion-badge>
+          <ion-label >{{stat}}</ion-label> 
+        </ion-item>
+      }
+    </ion-list>
+</ion-content>

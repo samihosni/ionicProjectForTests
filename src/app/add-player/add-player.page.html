@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-title style="font-size: large; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Ajout d'un Joueur</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <div class="ion-margin">
+    <form #f="ngForm">
+      <ion-label> Nom </ion-label>
+      <ion-input ngModel required name="nom" type="text" label-placement="floating" fill="solid" style="margin-bottom: 1.5em;"></ion-input>
+
+      <ion-label> Position </ion-label>
+      <ion-input ngModel name="position" type="text" label-placement="floating" fill="solid" style="margin-bottom: 1.5em;"></ion-input>
+
+      <ion-label> Image </ion-label>
+      <ion-input ngModel name="image" type="file" label-placement="floating" fill="solid" (change)="onFileSelected($event)" style="margin-bottom: 1.5em;"></ion-input>
+     
+      <ion-button 
+        [disabled]="f.invalid"
+        (click)="onSubmit(f.value)"
+        type="submit"
+        expand="full"
+        color="secondary"
+        >Ajouter</ion-button
+      >
+
+    </form>
+  </div>
+</ion-content>

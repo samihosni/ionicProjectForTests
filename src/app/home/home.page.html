@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="secondary">
+    <ion-title style="font-size: large; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+      Liste Joueurs
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-icon
+        slot="icon-only"
+        routerLink="/addPlayer"
+        name="add-circle-outline"
+      ></ion-icon>
+    </ion-buttons>
+
+  </ion-toolbar>
+ 
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="bg-img">
+    
+    @for (player of players; track player.id) {
+      <ion-card >
+        <ion-item-sliding>
+          
+
+          <ion-item [routerLink]="['/detailsPlayer', player.id]">
+            <ion-avatar>
+              <img [src]="player.image" />
+            </ion-avatar>
+            <ion-label class="ion-margin">{{player.nom}}</ion-label>
+            <p>{{ player.position }}</p>
+
+          </ion-item>
+
+          <ion-item-options>
+            <ion-item-option (click)="updatePlayer(player.id, player.nom, player.position, player.image, player.statistiques)">Modifier </ion-item-option>
+            <ion-item-option (click)="presentAlert(player.id)" color="danger"
+              >Supprimer</ion-item-option
+            >
+          </ion-item-options>
+          
+        </ion-item-sliding>
+      </ion-card>
+      
+    }
+  </div>
+</ion-content>
